@@ -623,7 +623,7 @@ section {
 	}
 	.event-item {
 		background-size: cover;
-		background-position: cente;
+		background-position: center;
 		min-height: 600px;
 		padding: 30px;
 		&:before {
@@ -991,12 +991,23 @@ section {
 	position: relative;
 	min-height: 60vh;
 	padding: 160px 0 60px 0;
+	.fyb-brand{
+		width: 100%;
+		display: flex;
+		align-items: start;
+		margin-bottom: 16px;
+		img{
+			width: 120px;
+			margin-right: 16px;
+		}
+	}
 	h2 {
-		font-size: 38px;
+		font-size: 20px;
 		font-weight: 700;
 		margin-bottom: 20px;
 		color: $color_8;
 		font-family: $font-default;
+		text-align: justify;
 		span {
 			color: $color-secondary;
 		}
@@ -1526,7 +1537,7 @@ section {
 @media (max-width: 640px) {
 	.hero {
 		h2 {
-			font-size: 36px;
+			font-size: 16px;
 		}
 		.btn-get-started {
 			font-size: 14px;

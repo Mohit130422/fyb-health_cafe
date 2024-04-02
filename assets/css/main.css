@@ -734,7 +734,7 @@ section {
 
 .events .event-item {
   background-size: cover;
-  background-position: cente;
+  background-position: center;
   min-height: 600px;
   padding: 30px;
 }
@@ -1180,12 +1180,29 @@ section {
   padding: 160px 0 60px 0;
 }
 
+.hero .fyb-brand {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  margin-bottom: 16px;
+}
+
+.hero .fyb-brand img {
+  width: 120px;
+  margin-right: 16px;
+}
+
 .hero h2 {
-  font-size: 38px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 20px;
   color: #4B1346;
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  text-align: justify;
 }
 
 .hero h2 span {
@@ -1755,7 +1772,7 @@ section {
 
 @media (max-width: 640px) {
   .hero h2 {
-    font-size: 36px;
+    font-size: 16px;
   }
   .hero .btn-get-started {
     font-size: 14px;
