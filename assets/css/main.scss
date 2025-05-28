@@ -1,4 +1,4 @@
-$font-default: "Montserrat", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-default: "Segoi UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $color-default: #212529;
 $color-primary: #9B0E8E;
 $color-secondary: #4B1346;
@@ -131,7 +131,7 @@ section {
 	p {
 		margin: 0;
 		font-size: 48px;
-		font-weight: 400;
+		font-weight: 500;
 		font-family: $font-default;
 
 		span {
@@ -1194,6 +1194,13 @@ section {
 					filter: opacity(30%);
 					border-radius: 16px;
 					box-shadow: 0 2px 6px 1px rgba($background-color_5, 0.3);
+				}
+				.caption{
+					text-align: center;
+					font-size: 18px;
+					display: block;
+					margin-top: 16px;
+					color: #000;
 				}
 			}
 		}
