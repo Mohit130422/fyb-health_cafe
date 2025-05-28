@@ -195,11 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
    * Gallery Slider
    */
   new Swiper('.gallery-slider', {
-    speed: 400,
+    speed: 1200,
     loop: true,
     centeredSlides: true,
     autoplay: {
-      delay: 5000,
+      delay: 2000,
       disableOnInteraction: false
     },
     slidesPerView: 'auto',
@@ -218,8 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
         spaceBetween: 20
       },
       992: {
-        slidesPerView: 5,
-        spaceBetween: 20
+        slidesPerView: 3,
+        spaceBetween: 40
       }
     }
   });
