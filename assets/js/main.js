@@ -8,6 +8,98 @@
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
+  // New latest JS for new landing page
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  const carousel = document.getElementById("carousel");
+  const items = document.querySelectorAll(".carousel-item");
+  let index = 1; // Start from the second item (center)
+  const totalItems = items.length;
+
+  function updateCarousel() {
+    const itemWidth = items[0].offsetWidth;
+    const offset = itemWidth * index - (window.innerWidth / 2) + (itemWidth / 2);
+    carousel.style.transform = `translateX(-${offset}px)`;
+
+    items.forEach((item, i) => {
+      item.classList.remove("active");
+      if (i === index) item.classList.add("active");
+    });
+
+    index = (index + 1) % (totalItems - 2); // loop within original 3
+  }
+
+  setInterval(updateCarousel, 5000);
+
+  window.addEventListener("resize", updateCarousel); // adjust on resize
+
+  // const swiper = new Swiper(".swiper", {
+  //   loop: false,
+  //   pagination: {
+  //     el: ".swiper-pagination",
+  //   },
+  // });
+
+    const playPauseButtons = document.querySelectorAll(".play-pause");
+  const videos = document.querySelectorAll("video");
+  const thumbnails = document.querySelectorAll(".video-thumbnail");
+
+  playPauseButtons.forEach((button, index) => {
+    const video = videos[index];
+    const playIcon = button.querySelector(".play-icon");
+    const pauseIcon = button.querySelector(".pause-icon");
+    const thumbnail = thumbnails[index];
+    const container = video.parentElement;
+
+    const pauseAll = () => {
+      videos.forEach((v, i) => {
+        if (i !== index) {
+          v.pause();
+          thumbnails[i].classList.remove("hidden");
+          playPauseButtons[i].classList.remove("hidden");
+          playPauseButtons[i].querySelector(".play-icon").style.display = "block";
+          playPauseButtons[i].querySelector(".pause-icon").style.display = "none";
+        }
+      });
+    };
+
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (video.paused) {
+        pauseAll();
+        thumbnail.classList.add("hidden");
+        video.play();
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        setTimeout(() => button.classList.add("hidden"), 1000);
+      } else {
+        video.pause();
+        button.classList.remove("hidden");
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+      }
+    });
+
+    container.addEventListener("click", () => {
+      if (!video.paused) {
+        video.pause();
+        button.classList.remove("hidden");
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+      }
+    });
+
+    video.addEventListener("ended", () => {
+      button.classList.remove("hidden");
+      thumbnail.classList.remove("hidden");
+      playIcon.style.display = "block";
+      pauseIcon.style.display = "none";
+    });
+  });
+
   /**
    * Preloader
    */
@@ -60,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileNavHide = document.querySelector('.mobile-nav-hide');
 
   document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
-    el.addEventListener('click', function(event) {
+    el.addEventListener('click', function (event) {
       event.preventDefault();
       mobileNavToogle();
     })
@@ -96,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
 
   navDropdowns.forEach(el => {
-    el.addEventListener('click', function(event) {
+    el.addEventListener('click', function (event) {
       if (document.querySelector('.mobile-nav-active')) {
         event.preventDefault();
         this.classList.toggle('active');
@@ -114,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const scrollTop = document.querySelector('.scroll-top');
   if (scrollTop) {
-    const togglescrollTop = function() {
+    const togglescrollTop = function () {
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
     window.addEventListener('load', togglescrollTop);
