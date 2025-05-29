@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   },
   // });
 
-    const playPauseButtons = document.querySelectorAll(".play-pause");
+  const playPauseButtons = document.querySelectorAll(".play-pause");
   const videos = document.querySelectorAll("video");
   const thumbnails = document.querySelectorAll(".video-thumbnail");
 
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    button.addEventListener("click", (e) => {
+    container.addEventListener("mouseenter", (e) => {
       e.stopPropagation();
       if (video.paused) {
         pauseAll();
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    container.addEventListener("click", () => {
+    container.addEventListener("mouseleave", () => {
       if (!video.paused) {
         video.pause();
         button.classList.remove("hidden");
@@ -254,13 +254,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Init swiper slider with 3 slides at once in desktop view
    */
+ 
   new Swiper('.slides-3', {
     speed: 600,
     loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
+    autoplay: false,
+    // autoplay: {
+    //   delay: 5000,
+    //   disableOnInteraction: false
+    // },
     slidesPerView: 'auto',
     pagination: {
       el: '.swiper-pagination',
@@ -282,10 +284,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+  // Pause on mouse enter / Resume on mouse leave
+  const swiperContainer = document.querySelector('.slides-3');
+  swiperContainer.addEventListener('mouseenter', () => swiper.autoplay.stop());
+  swiperContainer.addEventListener('mouseleave', () => swiper.autoplay.start());
 
-  /**
-   * Gallery Slider
-   */
+
+  //  Gallery Slider
   new Swiper('.gallery-slider', {
     speed: 1200,
     loop: true,

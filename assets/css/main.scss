@@ -903,21 +903,27 @@ section {
 		font-weight: 600;
 		text-decoration: underline;
 	}
-
+	.swiper-slide{
+		border-radius: 15px;
+		overflow: hidden;
+	}
 	.event-item {
 		position: relative;
 		background-size: cover;
 		background-position: center;
-		height: 500px;
+		height: 600px;
 		color: #fff;
-		padding: 20px;
+		padding: 16px 8px;
+		
 
 		.video-container {
 			position: relative;
 			width: 100%;
 			height: 100%;
 			cursor: pointer;
-
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 1px 1px 8px 1px #00000075;
 			video {
 				width: 100%;
 				height: 100%;
@@ -935,6 +941,32 @@ section {
 				background-position: center;
 				z-index: 1;
 				transition: opacity 0.5s;
+    			display: flex;
+    			justify-content: end;
+    			flex-direction: column;
+    			align-items: center;
+				padding: 16px;
+				&::before{
+					content: "";
+    				background: rgba(0, 0, 0, 0.6);
+    				position: absolute;
+    				inset: 0;
+				}
+				h3{
+					position: relative;
+					font-size: 24px;
+    				font-weight: 700;
+    				margin-bottom: 5px;
+    				color: #fff;
+				}
+				p{
+					position: relative;
+					font-size: 16px;
+					font-weight: 400;
+					margin-bottom: 10px;
+					color: rgba(255, 255, 255, 0.8);
+					text-align: center;
+				}
 			}
 			.hidden {
 				opacity: 0;
@@ -970,45 +1002,6 @@ section {
 			}
 		}
 	}
-
-
-
-	// .video-container .play-pause .play-pause .event-item {
-	// 	background-size: cover;
-	// 	background-position: center;
-	// 	min-height: 600px;
-	// 	padding: 30px;
-
-	// 	&:before {
-	// 		content: "";
-	// 		background: rgba(0, 0, 0, 0.6);
-	// 		position: absolute;
-	// 		inset: 0;
-	// 	}
-
-	// 	h3 {
-	// 		font-size: 24px;
-	// 		font-weight: 700;
-	// 		margin-bottom: 5px;
-	// 		color: $color_6;
-	// 		position: relative;
-	// 	}
-
-	// 	.price {
-	// 		color: $color_6;
-	// 		border-bottom: 2px solid $color-primary;
-	// 		font-size: 32px;
-	// 		font-weight: 700;
-	// 		margin-bottom: 15px;
-	// 		position: relative;
-	// 	}
-
-	// 	.description {
-	// 		margin-bottom: 0;
-	// 		color: $color-primary4;
-	// 		position: relative;
-	// 	}
-	// }
 
 	.swiper-pagination {
 		margin-top: 20px;
@@ -1641,6 +1634,30 @@ section {
 	.events {
 		.event-item {
 			min-height: 500px;
+		}
+	}
+
+	.gallery{
+		.swiper-slide {
+			min-height: 300px;
+			background-size: cover;
+			background-position: center;
+
+			.glightbox {
+				.img-fluid {
+					filter: opacity(100%) !important;
+					border-radius: 16px;
+					box-shadow: 0 2px 6px 1px rgba($background-color_5, 0.3);
+				}
+
+				.caption {
+					text-align: center;
+					font-size: 16px;
+					display: block;
+					margin-top: 16px;
+					color: #000;
+				}
+			}
 		}
 	}
 
