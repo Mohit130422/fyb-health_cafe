@@ -1,14 +1,34 @@
-/**
-* Template Name: Yummy
-* Updated: Mar 12 2024 with Bootstrap v5.3.3
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
   // New latest JS for new landing page
+  const hamburger = document.querySelector('.feather-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  // Toggle menu on hamburger click
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu on scroll
+  window.addEventListener('scroll', () => {
+    navLinks.classList.remove('open');
+  });
+
+  // Close on nav link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove('open');
+    }
+  });
+
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     navbar.classList.toggle('scrolled', window.scrollY > 10);

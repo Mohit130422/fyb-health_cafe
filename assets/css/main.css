@@ -183,6 +183,9 @@ section {
   justify-content: center;
   z-index: 10;
 }
+.nav .navbrand {
+  display: none;
+}
 .nav .nav-links {
   display: flex;
   gap: 2rem;
@@ -207,7 +210,7 @@ section {
 }
 
 /* Hero Section */
-.hero {
+.lp-hero {
   height: 100vh;
   background: url("../img/hero-img.png") no-repeat center center/cover;
   display: flex;
@@ -218,28 +221,28 @@ section {
   position: relative;
   color: white;
 }
-.hero::before {
+.lp-hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
-.hero .hero-content {
+.lp-hero .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
   width: 100%;
   /* Responsive */
 }
-.hero .hero-content .hero-logo {
+.lp-hero .hero-content .hero-logo {
   margin: 0 auto 1rem;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   background: white;
 }
-.hero .hero-content .hero-logo img {
+.lp-hero .hero-content .hero-logo img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
@@ -247,16 +250,16 @@ section {
   -o-object-position: center;
      object-position: center;
 }
-.hero .hero-content h1 {
+.lp-hero .hero-content h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
-.hero .hero-content p {
+.lp-hero .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   color: #fff;
 }
-.hero .hero-content .form {
+.lp-hero .hero-content .form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -266,14 +269,14 @@ section {
   border-radius: 50px;
   overflow: hidden;
 }
-.hero .hero-content .form input {
+.lp-hero .hero-content .form input {
   flex: 1;
   padding: 0.75rem 1rem;
   border: none;
   outline: none;
   font-size: 1rem;
 }
-.hero .hero-content .form button {
+.lp-hero .hero-content .form button {
   padding: 0.75rem 1.5rem;
   background-color: #C40097;
   color: white;
@@ -282,19 +285,19 @@ section {
   cursor: pointer;
 }
 @media (max-width: 768px) {
-  .hero .hero-content h1 {
+  .lp-hero .hero-content h1 {
     font-size: 2rem;
   }
-  .hero .hero-content .form {
+  .lp-hero .hero-content .form {
     flex-direction: column;
     border-radius: 10px;
   }
-  .hero .hero-content .form input,
-  .hero .hero-content .form button {
+  .lp-hero .hero-content .form input,
+  .lp-hero .hero-content .form button {
     width: 100%;
     border-radius: 0;
   }
-  .hero .hero-content .form button {
+  .lp-hero .hero-content .form button {
     border-top: 1px solid #ddd;
   }
 }
@@ -1059,10 +1062,15 @@ section {
   color: #000;
 }
 
+.contact {
+  background-color: #FFF6FE;
+}
 .contact .info-item {
-  background: #f4f4f4;
+  background: #ffffff;
   padding: 30px;
   height: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
 }
 .contact .info-item .icon {
   display: flex;
@@ -1109,10 +1117,28 @@ section {
   width: 100%;
   margin-top: 30px;
   background: #fff;
+  padding: 30px;
+  border-radius: 10px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 5rem;
 }
 .contact .php-email-form .form-group {
   padding-bottom: 20px;
+}
+.contact .php-email-form .form-group label {
+  font-weight: 600;
+  color: #4B1346;
+  display: block;
+  margin-bottom: 5px;
+}
+.contact .php-email-form .form-group input, .contact .php-email-form .form-group .form-select {
+  border-radius: 12;
+  box-shadow: none;
+  font-size: 14px;
+  height: 48px;
+}
+.contact .php-email-form .form-group input:focus, .contact .php-email-form .form-group .form-select:focus {
+  border-color: #9B0E8E;
 }
 .contact .php-email-form .error-message {
   display: none;
@@ -1149,24 +1175,6 @@ section {
   border: 3px solid #059652;
   border-top-color: #fff;
   animation: animate-loading 1s linear infinite;
-}
-.contact .php-email-form input {
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-  height: 48px;
-}
-.contact .php-email-form input:focus {
-  border-color: #9B0E8E;
-}
-.contact .php-email-form textarea {
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-  padding: 10px 12px;
-}
-.contact .php-email-form textarea:focus {
-  border-color: #9B0E8E;
 }
 .contact .php-email-form button[type=submit] {
   background: #9B0E8E;
@@ -1350,6 +1358,51 @@ section {
 }
 
 @media (max-width: 575px) {
+  .nav .navbrand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px 20px;
+    background-color: #fff;
+  }
+  .nav .navbrand .brand {
+    width: 50px;
+  }
+  .nav .navbrand .feather-menu {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .nav .nav-links {
+    position: absolute;
+    top: 70px;
+    right: -450px;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    padding: 0;
+    gap: 0;
+    transition: right 0.3s ease-in-out;
+  }
+  .nav .nav-links li {
+    color: #000;
+    padding: 16px 0;
+  }
+  .nav .open {
+    right: 0;
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+  }
+  .nav .open li {
+    border-bottom: 1px solid rgba(55, 55, 63, 0.1);
+  }
+  .hero .hero-content .hero-logo {
+    display: none;
+  }
   .breadcrumbs {
     margin-top: 70px;
   }
