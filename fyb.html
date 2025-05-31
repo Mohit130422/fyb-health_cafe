@@ -278,8 +278,8 @@
             <label for="firstname">First Name</label>
             <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter Your First Name" required>
           </div>
-           <div class="col-xl-6 form-group">
-            <label for="lastname">First Name</label>
+          <div class="col-xl-6 form-group">
+            <label for="lastname">Last Name</label>
             <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter Your Last Name" required>
           </div>
           <div class="col-xl-6 form-group">
@@ -295,6 +295,10 @@
             <input type="date" name="name" class="form-control" id="date" placeholder="12/05/2025" required>
           </div>
           <div class="col-xl-6 form-group">
+            <label for="date">Time</label>
+            <input type="time" name="name" class="form-control" id="date" placeholder="12/05/2025" required>
+          </div>
+          <div class="col-xl-6 form-group">
             <label for="adults">No. of Adults</label>
             <select class="form-select" aria-label="Default select example" id="adults" name="adults" required>
               <option selected>--Select--</option>
@@ -302,11 +306,7 @@
               <option value="2">10 to 20</option>
               <option value="3">20 to 30</option>
             </select>
-          </div>
-          <div class="col-xl-6 form-group">
-            <label for="date">Time</label>
-            <input type="time" name="name" class="form-control" id="date" placeholder="12/05/2025" required>
-          </div>
+          </div>         
           <div class="col-xl-6 form-group">
             <label for="children">No. of Children</label>
             <select class="form-select" aria-label="Default select example" id="children" name="children" required>
@@ -314,6 +314,16 @@
               <option value="1">1 to 10</option>
               <option value="2">10 to 20</option>
               <option value="3">20 to 30</option>
+            </select>
+          </div>
+          <div class="col-xl-12 form-group">
+            <label for="eventtype">Type of Event</label>
+            <select class="form-select" aria-label="Default select example" id="eventtype" name="eventtype" required>
+              <option selected>--Select--</option>
+              <option value="1">Birthday Party</option>
+              <option value="2">Aniversary Party</option>
+              <option value="3">Open Mic Concert</option>
+              <option value="4">Office Parties</option>
             </select>
           </div>
         </div>
