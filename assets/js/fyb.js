@@ -1,12 +1,124 @@
-/**
-* Template Name: Yummy
-* Updated: Mar 12 2024 with Bootstrap v5.3.3
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
+
+  // New latest JS for new landing page
+  const hamburger = document.querySelector('.feather-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  // Toggle menu on hamburger click
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu on scroll
+  window.addEventListener('scroll', () => {
+    navLinks.classList.remove('open');
+  });
+
+  // Close on nav link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove('open');
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  const carousel = document.getElementById("carousel");
+  const items = document.querySelectorAll(".carousel-item");
+  let index = 1; // Start from the second item (center)
+  const totalItems = items.length;
+
+  function updateCarousel() {
+    const itemWidth = items[0].offsetWidth;
+    const offset = itemWidth * index - (window.innerWidth / 2) + (itemWidth / 2);
+    carousel.style.transform = `translateX(-${offset}px)`;
+
+    items.forEach((item, i) => {
+      item.classList.remove("active");
+      if (i === index) item.classList.add("active");
+    });
+
+    index = (index + 1) % (totalItems - 2); // loop within original 3
+  }
+
+  setInterval(updateCarousel, 5000);
+
+  window.addEventListener("resize", updateCarousel); // adjust on resize
+
+  // const swiper = new Swiper(".swiper", {
+  //   loop: false,
+  //   pagination: {
+  //     el: ".swiper-pagination",
+  //   },
+  // });
+
+  const playPauseButtons = document.querySelectorAll(".play-pause");
+  const videos = document.querySelectorAll("video");
+  const thumbnails = document.querySelectorAll(".video-thumbnail");
+
+  playPauseButtons.forEach((button, index) => {
+    const video = videos[index];
+    const playIcon = button.querySelector(".play-icon");
+    const pauseIcon = button.querySelector(".pause-icon");
+    const thumbnail = thumbnails[index];
+    const container = video.parentElement;
+
+    const pauseAll = () => {
+      videos.forEach((v, i) => {
+        if (i !== index) {
+          v.pause();
+          thumbnails[i].classList.remove("hidden");
+          playPauseButtons[i].classList.remove("hidden");
+          playPauseButtons[i].querySelector(".play-icon").style.display = "block";
+          playPauseButtons[i].querySelector(".pause-icon").style.display = "none";
+        }
+      });
+    };
+
+    container.addEventListener("mouseenter", (e) => {
+      e.stopPropagation();
+      if (video.paused) {
+        pauseAll();
+        thumbnail.classList.add("hidden");
+        video.play();
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        setTimeout(() => button.classList.add("hidden"), 1000);
+      } else {
+        video.pause();
+        button.classList.remove("hidden");
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+      }
+    });
+
+    container.addEventListener("mouseleave", () => {
+      if (!video.paused) {
+        video.pause();
+        button.classList.remove("hidden");
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+      }
+    });
+
+    video.addEventListener("ended", () => {
+      button.classList.remove("hidden");
+      thumbnail.classList.remove("hidden");
+      playIcon.style.display = "block";
+      pauseIcon.style.display = "none";
+    });
+  });
 
   /**
    * Preloader
@@ -60,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileNavHide = document.querySelector('.mobile-nav-hide');
 
   document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
-    el.addEventListener('click', function(event) {
+    el.addEventListener('click', function (event) {
       event.preventDefault();
       mobileNavToogle();
     })
@@ -96,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
 
   navDropdowns.forEach(el => {
-    el.addEventListener('click', function(event) {
+    el.addEventListener('click', function (event) {
       if (document.querySelector('.mobile-nav-active')) {
         event.preventDefault();
         this.classList.toggle('active');
@@ -114,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const scrollTop = document.querySelector('.scroll-top');
   if (scrollTop) {
-    const togglescrollTop = function() {
+    const togglescrollTop = function () {
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
     window.addEventListener('load', togglescrollTop);
@@ -130,9 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const glightbox = GLightbox({
     selector: '.glightbox'
-  });
-  const glightboxs = GLightbox({
-    selector: '.glightboxs'
   });
 
   /**
@@ -165,13 +274,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Init swiper slider with 3 slides at once in desktop view
    */
+ 
   new Swiper('.slides-3', {
     speed: 600,
     loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
+    autoplay: false,
+    // autoplay: {
+    //   delay: 5000,
+    //   disableOnInteraction: false
+    // },
     slidesPerView: 'auto',
     pagination: {
       el: '.swiper-pagination',
@@ -193,16 +304,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+  // Pause on mouse enter / Resume on mouse leave
+  const swiperContainer = document.querySelector('.slides-3');
+  swiperContainer.addEventListener('mouseenter', () => swiper.autoplay.stop());
+  swiperContainer.addEventListener('mouseleave', () => swiper.autoplay.start());
 
-  /**
-   * Gallery Slider
-   */
+
+  //  Gallery Slider
   new Swiper('.gallery-slider', {
-    speed: 400,
+    speed: 1200,
     loop: true,
     centeredSlides: true,
     autoplay: {
-      delay: 5000,
+      delay: 2000,
       disableOnInteraction: false
     },
     slidesPerView: 'auto',
@@ -221,8 +335,8 @@ document.addEventListener('DOMContentLoaded', () => {
         spaceBetween: 20
       },
       992: {
-        slidesPerView: 5,
-        spaceBetween: 20
+        slidesPerView: 3,
+        spaceBetween: 40
       }
     }
   });
@@ -243,65 +357,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-var show_error_div = function (className, message, fontColor) {
-  $('.' + className).css('display', 'block').css('color', fontColor);
-  $('.' + className).html(message);
-  $('.' + className).delay(3000).fadeOut();
-};
-
-var leadSubmit = (leadType, request) => {
-  let response;
-  const url = leadSubmitUrl.replace('{leadType}', leadType.replace('_', '-').toLowerCase());
-  console.log(url);
-  ajaxCallForJsonBody(url, 'POST', JSON.stringify(request), null, (result) => {
-      response = {status: result.status, message: result.message};
-  }, false);
-  return response;
-}
-
-var letterValidation = /^[a-zA-Z ]+$/;
-$('#fyb-lead-submit').on('click', function () {
-  let fullname = $('#name').val().trim();
-  let emailId = $('#email').val().trim();
-  let mobile = $('#mobile').val().trim();
-
-  if (fullname.trim() == '') {
-      $('#name').trigger('focus');
-      show_error_div('error-message', 'Enter your full name!', '#f60a0a');
-      return false;
-  } else if (!fullname.match(letterValidation)) {
-      show_error_div('error-message', 'Name field supports only alphbets and space!', '#f60a0a');
-      $('.name-text-input').trigger('focus');
-      return false;
-  } else if (mobile == '') {
-      $('#mobile').trigger('focus');
-      show_error_div('error-message', 'Please enter Mobile number!', '#f60a0a');
-      return false;
-  } else if (IsMobileNumber(mobile) == false) {
-      $('#mobile').trigger('focus');
-      show_error_div('error-message', 'Mobile number is not valid!', '#f60a0a');
-      return false;
-  } else if (emailId == '') {
-      $('#email').trigger('focus');
-      show_error_div('error-message', 'Please enter Email Id!', '#f60a0a');
-      return false;
-  } else if (validateEmail(emailId) == false) {
-      $('#email').trigger('focus');
-      show_error_div('error-message', 'Email Id is not valid!', '#f60a0a');
-      return false;
-  }
-  
-  const response = leadSubmit('PRODUCTS', {
-    firstName: fullname.split(' ').slice(0, -1).join(' '),
-    lastName: fullname.split(' ').slice(-1).join(' '),
-    mobile: mobile,     emailId: emailId,
-    productId: 36
-  });
-  if(response.status !== 200){
-      show_error_div('error-message', response.message, '#f60a0a');
-      return;
-  }
-  show_error_div('error-message', 'Your request has been received. We will contact you soon!', '#8ec15f');
-  $('#kidfit-form').trigger('reset');
-});
-
