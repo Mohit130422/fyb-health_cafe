@@ -191,8 +191,7 @@ section {
   gap: 2rem;
   list-style: none;
   background: rgba(255, 255, 255, 0.05);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   transition: background 0.3s ease;
   border-bottom: 1px solid #fff;
   border-left: 1px solid #fff;
@@ -233,7 +232,6 @@ section {
   z-index: 2;
   max-width: 800px;
   width: 100%;
-  /* Responsive */
 }
 .lp-hero .hero-content .hero-logo {
   margin: 0 auto 1rem;
@@ -283,6 +281,9 @@ section {
   font-weight: bold;
   border: none;
   cursor: pointer;
+}
+.lp-hero .hero-content {
+  /* Responsive */
 }
 @media (max-width: 768px) {
   .lp-hero .hero-content h1 {
@@ -1473,12 +1474,12 @@ section {
   .navbar li {
     position: relative;
   }
-  .navbar li:hover > a {
-    color: #000;
-  }
   .navbar li:hover > a:before {
     visibility: visible;
     width: 100%;
+  }
+  .navbar li:hover > a {
+    color: #000;
   }
   .navbar > ul > li {
     white-space: nowrap;
@@ -1532,19 +1533,19 @@ section {
     line-height: 0;
     margin-left: 5px;
   }
-  .navbar a:hover {
-    color: #000;
-  }
   .navbar a:hover:before {
     visibility: visible;
     width: 100%;
   }
-  .navbar .active {
+  .navbar a:hover {
     color: #000;
   }
   .navbar .active:before {
     visibility: visible;
     width: 100%;
+  }
+  .navbar .active {
+    color: #000;
   }
   .navbar .active:focus {
     color: #000;

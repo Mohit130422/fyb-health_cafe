@@ -1157,12 +1157,12 @@ section {
   .navbar li {
     position: relative;
   }
-  .navbar li:hover > a {
-    color: #000;
-  }
   .navbar li:hover > a:before {
     visibility: visible;
     width: 100%;
+  }
+  .navbar li:hover > a {
+    color: #000;
   }
   .navbar > ul > li {
     white-space: nowrap;
@@ -1216,19 +1216,19 @@ section {
     line-height: 0;
     margin-left: 5px;
   }
-  .navbar a:hover {
-    color: #000;
-  }
   .navbar a:hover:before {
     visibility: visible;
     width: 100%;
   }
-  .navbar .active {
+  .navbar a:hover {
     color: #000;
   }
   .navbar .active:before {
     visibility: visible;
     width: 100%;
+  }
+  .navbar .active {
+    color: #000;
   }
   .navbar .active:focus {
     color: #000;
